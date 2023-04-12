@@ -1,0 +1,9 @@
+- name: Configure service
+  ansible.builtin.import_tasks:
+    file: "add-service.ansible.yml"
+  when: systemd_service_file != "" and systemd_service_name != "" and systemd_service_state != "absent"
+
+- name: Remove service
+  ansible.builtin.import_tasks:
+    file: "remove-service.ansible.yml"
+  when: systemd_service_name != "" and systemd_service_state == "absent"

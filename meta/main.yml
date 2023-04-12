@@ -1,0 +1,14 @@
+galaxy_info:
+  role_name: systemd_service
+  author: Tinyblargon
+  description: Create and configure systemd service
+  license: MIT
+  min_ansible_version: '2.14.1'
+  platforms:
+    - name: Debian
+      versions:
+        - buster
+        - bullseye
+  galaxy_tags:
+    - systemd
+    - service

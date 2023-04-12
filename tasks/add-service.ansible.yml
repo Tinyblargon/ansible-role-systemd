@@ -1,0 +1,26 @@
+- name: Copy systemd service file
+  ansible.builtin.copy:
+    dest: "/etc/systemd/system/{{ systemd_service_name }}.service"
+    src: "{{ systemd_service_file }}"
+    mode: 0644
+  register: service_copied
+  become: true
+
+- name: Set service daemon reload
+  ansible.builtin.set_fact:
+    systemd_service_daemon_reload: true
+  when: systemd_service_state != "started" and service_copied is changed
+
+- name: Set service state (restarted)
+  ansible.builtin.set_fact:
+    systemd_service_state: "restarted"
+    systemd_service_daemon_reload: true
+  when: systemd_service_state == "started" and service_copied is changed
+
+- name: Configure service
+  ansible.builtin.systemd_service:
+    enabled: "{{ systemd_service_enable }}"
+    daemon_reload: "{{ systemd_service_daemon_reload }}"
+    name: "{{ systemd_service_name }}.service"
+    state: "{{ systemd_service_state }}"
+  become: true
