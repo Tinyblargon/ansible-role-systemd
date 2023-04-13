@@ -1,20 +1,20 @@
 - name: Check if service file exists
   ansible.builtin.stat:
-    path: "/etc/systemd/system/{{ systemd_service_name }}.service"
+    path: "/etc/systemd/system/{{ systemd_name }}.{{ systemd_type }}"
   become: true
   register: service_file
 
 - name: Stop and disable service
   ansible.builtin.systemd_service:
     enabled: false
-    name: "{{ systemd_service_name }}.service"
+    name: "{{ systemd_name }}"
     state: "stopped"
   become: true
   when: service_file.stat.exists
 
 - name: Remove service
   ansible.builtin.file:
-    path: "/etc/systemd/system/{{ systemd_service_name }}.service"
+    path: "/etc/systemd/system/{{ systemd_name }}.{{ systemd_type }}"
     state: "absent"
   become: true
   when: service_file.stat.exists

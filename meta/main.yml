@@ -1,7 +1,7 @@
 galaxy_info:
-  role_name: systemd_service
+  role_name: systemd
   author: Tinyblargon
-  description: Create and configure systemd service
+  description: Create and configure systemd services and timers
   license: MIT
   min_ansible_version: '2.14.1'
   platforms:
@@ -12,3 +12,4 @@ galaxy_info:
   galaxy_tags:
     - systemd
     - service
+    - timer
