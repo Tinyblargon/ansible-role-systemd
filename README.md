@@ -1,4 +1,4 @@
-# Ansible Role: systemd-service
+# Ansible Role: systemd
 
 Role for configuring a systemd service/timer from a local file.
 
