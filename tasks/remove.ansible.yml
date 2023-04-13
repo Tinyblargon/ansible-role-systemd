@@ -5,7 +5,7 @@
   register: service_file
 
 - name: Stop and disable service
-  ansible.builtin.systemd_service:
+  ansible.builtin.systemd:
     enabled: false
     name: "{{ systemd_name }}"
     state: "stopped"

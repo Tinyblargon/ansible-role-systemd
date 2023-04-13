@@ -18,7 +18,7 @@
   when: systemd_state == "started" and service_copied is changed
 
 - name: Configure service
-  ansible.builtin.systemd_service:
+  ansible.builtin.systemd:
     enabled: "{{ systemd_enable }}"
     daemon_reload: "{{ systemd_daemon_reload }}"
     name: "{{ systemd_name }}.{{ systemd_type }}"
