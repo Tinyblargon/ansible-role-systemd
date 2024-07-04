@@ -2,7 +2,7 @@
   ansible.builtin.copy:
     dest: "/etc/systemd/system/{{ systemd_name }}.{{ systemd_type }}"
     src: "{{ systemd_file }}"
-    mode: 0644
+    mode: "0644"
   register: service_copied
   become: true
 
